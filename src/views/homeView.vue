@@ -26,7 +26,7 @@ export default {
         const response = await apiClient.get('/api/get_registers',{
             params: {
                 nick_usuario: 'Franco',
-                fecha1: '12/10/2024',
+                fecha1: '01/10/2024',
                 fecha2: '16/10/2024'
             }
         }); // Supongamos que esta es tu API
