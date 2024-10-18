@@ -1,7 +1,8 @@
 <template>
     <div class="login-container">
-      <div class="titulo">
-      <h1>Iniciar sesión</h1>
+      
+      <div class="logo">
+        <img src="../assets/images/tierrasur.png" alt="Logo de la empresa">
       </div>
       <form @submit.prevent="handleSubmit">
         <div>
@@ -45,16 +46,16 @@
   
   <style scoped>
     
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
-    width: 40vw;
-    padding: 8px;
+  .login-container {    
+    width: 100%;
+    height: 100%;
+    max-height: 550px;
+    max-width: 360px;
+    padding: 20px;
     background-color: var(--vt-c-white-soft);
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   }
 
   .titulo {
@@ -66,15 +67,15 @@
 
   .login-container h1 {
     margin: 8px;
-    color: var(--vt-c-indigo);
+    color: var(--vt-c-primaryColor);
   }
 
   .login-container form {
-    height: 40vh;
-    width: 20vw;
+    width: 100%;
     padding: 8px;
     display: flex;
     flex-direction: column;
+    flex: 1 0 auto;
   }
 
   .login-container div {
@@ -87,15 +88,34 @@
 
   .login-container input {
     width: 100%;
-    padding: 8px;
+    padding: 15px;
+    font-size: 18px
+  }
+
+  
+
+  .logo img {
+    width: 100%;
+    padding: 10px;
   }
 
   a {
-    color: var(--vt-c-indigo);
+    color: var(--vt-c-primaryColor);
   }
 
   a:hover {
     color: var(--vt-c-white-soft);
   }
+
+  @media (max-width: 550px) {
+    .login-container {
+      max-width: 500px;
+      margin: 20px; /* Asegura que se vea bien en pantallas de iPhone 13 Pro */
+    }
+
+    .login-form input, .login-button, .register-button {
+        font-size: 18px; /* Tamaño de fuente adecuado para usabilidad en móvil */
+    }
+}
   </style>
   

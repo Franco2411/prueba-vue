@@ -11,6 +11,10 @@
   --vt-c-indigo: #2c3e50;
   --vt-c-indigo-darker: #202d39;
 
+  --vt-c-primaryColor: #20512d;
+  --vt-c-primaryColorDarker: #16371e;
+  --vt-c-accentColor: #2f8d47;
+
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
   --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
@@ -87,5 +91,13 @@ body {
 }
 
 body.login-background {
-  background-image: url("../assets/images/fondo_login.jpg");
+  background-image: url("../assets/images/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
