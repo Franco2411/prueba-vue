@@ -1,7 +1,7 @@
 @import './base.css';
 
 #app {
-  margin: auto;
+  /*margin: auto;*/
   font-weight: normal;
 }
 
@@ -50,13 +50,13 @@ a {
 @media (max-width: 550px) {
   body {
     display: flex;
-    place-items: center;
+    /*place-items: center;*/
   }
 
   #app {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    
   }
+
 }

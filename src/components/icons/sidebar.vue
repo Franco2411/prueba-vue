@@ -180,9 +180,10 @@ const ToggleMenu = () => {
             cursor: pointer;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 550px) {
             position:fixed;
             z-index: 99;
+            
         }
 
     }
