@@ -54,6 +54,7 @@ export default {
 .home-container {
     display: flex;
     flex-direction: column;
+    margin-left: 1rem;
     }
 .contenedor-registros {
     display: flex;

@@ -60,7 +60,7 @@ aside {
     flex-direction: column;
     width: calc(2rem + 32px);
     height: 100vh;
-    background-color: var(--vt-c-white-soft);
+    background-color: var(--color-background-soft);
     color: var(--vt-c-primaryColor);
     margin-right: 2rem;
     overflow: hidden;
@@ -80,16 +80,19 @@ aside {
         justify-content: flex-end;
         margin-bottom: 1rem;
 
+
         position: relative;
         top: 0;
         transition: 0.2s ease-out;
 
         .menu-toggle {
             transition: 0.2s ease-in;
+            background-color: var(--color-background-soft);
+
 
             .material-symbols-outlined {
                 font-size: 2rem;
-                color: var(--vt-c-black-soft);
+                color: var(--color-heading);
                 transition: 0.2s ease-in;
 
             }
@@ -161,6 +164,9 @@ aside {
 
             .menu-toggle {
                 transform: rotate(-180deg);
+                color: var(--vt-c-primaryColor);
+                background-color: var(--color-background-soft);
+
             }
         }
 
@@ -177,6 +183,7 @@ aside {
         .accesos {
             .material-symbols-outlined {
                 margin-right: 1rem;
+
             }
         }
 
@@ -187,7 +194,8 @@ aside {
 
     .menu-toggle {
         border: none;
-        background-color: var(--vt-c-white-soft);
+        background-color: var(--color-background-soft);
+        color: var(--vt-c-primaryColor);
     }
 
     .menu-toggle:hover {
@@ -218,9 +226,16 @@ aside {
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin-bottom: 2rem;
-        border: solid 1px red;
+        margin-bottom: 0.5rem;
+        background-color: var(--color-background-soft);
         transition: 0.3s ease-out;
+
+        .menu-toggle {
+            width: 2.5rem;
+            border: none;
+            background-color: var(--color-background-soft);
+            color: var(--vt-c-primaryColor);
+        }
     }
 
     /* Ocultar el aside por defecto en móviles */
@@ -231,7 +246,7 @@ aside {
         z-index: 99;
         width: 250px;
         height: 100vh;
-        background-color: var(--vt-c-white-soft);
+        background-color: var(--color-background-soft);
 
     }
 
@@ -239,6 +254,10 @@ aside {
     .is-expanded {
         display: block; 
         transition: 0.3s ease-out;
+
+        &.menu-toggle span {
+            background-color: var(--color-background-soft);
+        }
 
     }
 

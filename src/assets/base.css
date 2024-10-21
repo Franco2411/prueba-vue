@@ -101,3 +101,13 @@ body.login-background {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 550px) {
+  body.login-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+}

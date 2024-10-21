@@ -1,6 +1,6 @@
 <template>
+  <sidebar2 v-if="!isAuthPage"></sidebar2>
   <div id="app">    
-    <sidebar2 v-if="!isAuthPage"></sidebar2>
     <router-view></router-view>  <!-- Aquí se mostrará la vista de login -->
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
 <style scoped>
  #app {
   display: flex;
+  flex-direction: row;
  }
 
 

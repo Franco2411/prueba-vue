@@ -3,6 +3,8 @@
 #app {
   /*margin: auto;*/
   font-weight: normal;
+  display: flex;
+  flex-direction: row;
 }
 
 .button-solid {
@@ -48,14 +50,11 @@ a {
 }
 
 @media (max-width: 550px) {
-  body {
-    display: flex;
-    /*place-items: center;*/
-  }
+ 
 
   #app {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     
   }
 
