@@ -49,27 +49,27 @@ export default {
       Swal.fire({
       title: 'Seleccione los datos',
       html: `
-      <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+      <div>
 
         <label for="up">Uni. Prod:</label>
-        <select id="up" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="up" class="swal2-input">
           <option value="" disabled selected>Seleccione una opción</option>
           ${this.campos.map(campo => `<option value="${campo.nro}">${campo.nro} - ${campo.nombre}</option>`).join('')}          
         </select>
 
         <label for="lote">Lote:</label>
-        <select id="lote" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="lote" class="swal2-input">
           <option value="" disabled selected>Seleccione una opción</option>
         </select>
 
         <label for="actividad">Actividad:</label>
-        <select id="actividad" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="actividad" class="swal2-input">
           <option value="" disabled selected>Seleccione una opción</option>
           ${this.actividades.map(actividad => `<option value="${actividad.id1}">${actividad.nombre}</option>`).join('')}          
         </select>
 
         <label for="tipo">Tipo:</label>
-        <select id="tipo" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="tipo" class="swal2-input">
           <option value="" disabled selected>Seleccione una opción</option>
             <option value="agroquimicos">Agroquimicos</option>
             <option value="fertilizantes">Fertilizantes</option>
@@ -79,12 +79,12 @@ export default {
         </select>
 
         <label for="insumo">Insumo/Labor:</label>
-        <select id="insumo" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="insumo" class="swal2-input">
           <option value="" disabled selected>Seleccione una opción</option>
         </select>
 
         <label for="deposito">Depósito:</label>
-        <select id="deposito" class="swal2-input" style="width: 100%; padding-right: 8px;">
+        <select id="deposito" class="swal2-input">
           <option value="Las Parejas" disabled selected>Las Parejas</option>
         </select>
 
@@ -219,13 +219,18 @@ export default {
   }
 
   .popup-ajustado {
-    max-height: 80vh !important;
-    overflow-y: auto !important;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 
   .contenido-popup-ajustado {
-    max-height: calc(90vh - 50px) !important; /* Descuenta el título y margen superior */
-    overflow-y: auto !important;              /* Añade scroll solo al contenido interno si es necesario */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(90vh - 50px); /* Descuenta el título y margen superior */
+    overflow-y: auto;
+    border: solid 1px red;             /* Añade scroll solo al contenido interno si es necesario */
   }
 
   

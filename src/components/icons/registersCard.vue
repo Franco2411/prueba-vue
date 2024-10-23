@@ -6,6 +6,9 @@
         <p><b>Actividad:</b> {{ registro.actividad }}</p>
         <p><b>Tipo:</b> {{ registro.codigo }}</p>
         <p><b>Insumo:</b> {{ registro.detalle }}</p>
+        <p><b>Cantidad:</b> {{ registro.cant }}</p>
+        <p><b>Fecha:</b> {{ registro.fecha }}</p>
+        <p><b>Usuario:</b> {{ registro.usuario }}</p>
     </div>
 </template>
 
