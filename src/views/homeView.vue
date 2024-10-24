@@ -49,7 +49,7 @@ export default {
       Swal.fire({
       title: 'Seleccione los datos',
       html: `
-      <div>
+      <div class="pop-container">
 
         <label for="up">Uni. Prod:</label>
         <select id="up" class="swal2-input">
@@ -92,8 +92,10 @@ export default {
         <input type="number" id="cantidad" class="swal2-input" placeholder="Ingresa un número">
       </div>`,
       customClass: {
-        popup: 'popup-ajustado',
-        htmlContainer: 'contenido-popup-ajustado'
+        htmlContainer: 'pop-container',
+        popup: 'pop',
+        container: 'pop-cont',
+        confirmButton: 'btn-confirmar-swal'
       },
       showCancelButton: true,
       confirmButtonText: 'Cargar registro',
@@ -128,15 +130,25 @@ export default {
         const up = document.getElementById('up').value;
         const lote = document.getElementById('lote').value;
         const actividad = document.getElementById('actividad').value;
-        const tipo = document.getElementById('tipo').value;
-        const insumo = document.getElementById('insumo').value;
-        const cantidad = document.getElementById('cantidad').value;
+        const codigo = document.getElementById('tipo').value;
+        const detalle = document.getElementById('insumo').value;
+        const cant = document.getElementById('cantidad').value;
+        const fecha = null;
+        const usuario = null;
+        const campania = '24/25';
 
-        return { select1, select2, numero };
+        if (!up || !lote || !actividad || !codigo || !insumo || !cantidad) {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+          return;
+        }
+
+        return { up, lote, actividad, detalle, codigo, cant, fecha, usuario, campania};
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        
+        this.registros.push(result.value);
+        console.log('Registros:', this.registros);
+        Swal.fire('¡Éxito!', 'Datos guardados correctamente', 'success');
       }
     });
     }
@@ -157,6 +169,8 @@ export default {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
+    max-width: 100%;
+    max-height: 100%;
     align-items: center
     }
   
@@ -172,9 +186,12 @@ export default {
 .contenedor-registros {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    max-width: 90vw;
+    flex: 1 1 auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 .img-nodata {
@@ -218,28 +235,31 @@ export default {
     }
   }
 
-  .popup-ajustado {
-    display: flex;
-    flex-direction: column;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+.pop {
+  display: flex;
+  flex-direction: column;
+}
 
-  .contenido-popup-ajustado {
-    display: flex;
-    flex-direction: column;
-    max-height: calc(90vh - 50px); /* Descuenta el título y margen superior */
-    overflow-y: auto;
-    border: solid 1px red;             /* Añade scroll solo al contenido interno si es necesario */
-  }
+.pop-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.pop-container {
+  display: flex;
+  flex-direction: column;
+}
 
   
 
 @media (max-width: 550px) {
   .home-container {
     margin-left: 1rem;
+    margin-right: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
 
   }
 
@@ -264,9 +284,12 @@ export default {
 
   .contenedor-registros {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    width: 100%;
+    overflow-y: auto;
+    padding: 0px 8px;
   }
 
   .btn-flotante {

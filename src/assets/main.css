@@ -37,6 +37,29 @@ a {
   padding: 3px;
 }
 
+.pop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+
+  label {
+    margin-bottom: 8px;
+  }
+  
+  select {
+    width: 100%;
+  }
+
+  input {
+    margin: 0;
+  }
+}
+
+.btn-confirmar-swal {
+  background-color: var(--vt-c-primaryColor);
+}
+
 @media (hover: hover) {
 
   .button-solid:hover {
