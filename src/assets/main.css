@@ -60,6 +60,12 @@ a {
   background-color: var(--vt-c-primaryColor);
 }
 
+.deny-btn {
+  background-color: var(--vt-c-white);
+  color: var(--vt-c-primaryColor);
+  border: solid 2px var(--vt-c-primaryColor);
+}
+
 @media (hover: hover) {
 
   .button-solid:hover {

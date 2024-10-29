@@ -95,10 +95,13 @@ export default {
         htmlContainer: 'pop-container',
         popup: 'pop',
         container: 'pop-cont',
-        confirmButton: 'btn-confirmar-swal'
+        confirmButton: 'btn-confirmar-swal',
+        denyButton: 'deny-btn'
       },
       showCancelButton: true,
-      confirmButtonText: 'Cargar registro',
+      showDenyButton: true,
+      denyButtonText: 'Agregar registro',
+      confirmButtonText: 'Confirmar',
         didOpen: () => {
           const unip = document.getElementById('up');
           const selectLote = document.getElementById('lote');
@@ -124,6 +127,23 @@ export default {
               });
             }
           });
+
+          const agregarBtn = Swal.getDenyButton();
+          agregarBtn.addEventListener('click', () => {
+          const up = Swal.getPopup().querySelector("#up").value;
+          const lote = Swal.getPopup().querySelector("#lote").value;
+
+        if (up) {
+          let items = {
+            'up': up,
+            'lote': lote
+          }
+          this.registros.push(items); // Agrega el registro a la lista
+          console.log("Registro agregado:", listaRegistros); // Muestra la lista actualizada en la consola
+        } else {
+          Swal.showValidationMessage("Por favor ingresa un registro válido");
+        }
+      });
         },
       focusConfirm: false,
       preConfirm: () => {
@@ -137,20 +157,13 @@ export default {
         const usuario = null;
         const campania = '24/25';
 
-        if (!up || !lote || !actividad || !codigo || !insumo || !cantidad) {
-          Swal.showValidationMessage('Por favor, complete todos los campos');
-          return;
-        }
-
-        return { up, lote, actividad, detalle, codigo, cant, fecha, usuario, campania};
+        //return { up, lote, actividad, detalle, codigo, cant, fecha, usuario, campania};
       }
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.registros.push(result.value);
-        console.log('Registros:', this.registros);
+      if (result.isConfirmed) {              
         Swal.fire('¡Éxito!', 'Datos guardados correctamente', 'success');
       }
-    });
+    });    
     }
   },
   data() {

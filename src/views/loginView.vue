@@ -1,5 +1,6 @@
 <template>
-    <div class="login-container">
+    <div class="container-loginContainer">
+      <div class="login-container">
       
       <div class="logo">
         <img src="../assets/images/tierrasur.png" alt="Logo de la empresa">
@@ -14,7 +15,9 @@
         <button type="submit" class="button-solid">Login</button>
         <button type="button" class="button-outlined"><a href="#">Registrarse</a></button>
       </form>
+      </div>
     </div>
+    
   </template>
   
   <script>
@@ -45,6 +48,16 @@
   </script>
   
   <style scoped>
+
+.container-loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+}
     
   .login-container {    
     width: 100%;
