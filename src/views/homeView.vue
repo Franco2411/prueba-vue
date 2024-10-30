@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
         <div class="titulo">
-          <h2>Bienvenido/a</h2><br>
+          <h2>Bienvenido/a {{ usuario }}</h2><br>
     
 
         </div>
@@ -43,7 +43,8 @@ export default {
         campos: [],
         actividades: [],
         registros: [],
-        lotes: []
+        lotes: [],
+        usuario: localStorage.getItem('usuario')
     }
   }
 }

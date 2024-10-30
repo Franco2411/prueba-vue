@@ -32,7 +32,7 @@
                 </span>
                 <span class="text">Registros</span>
             </router-link>
-            <router-link class="accesos" to="/login">
+            <router-link class="accesos" to="/login" @click="logout">
                 <span class="material-symbols-outlined">
                     logout
                 </span>
@@ -46,6 +46,7 @@
 
 <script setup>
 import {ref} from 'vue'
+import { logout } from '@/services/authService';
 
 const is_expanded = ref(false)
 

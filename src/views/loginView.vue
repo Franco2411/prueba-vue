@@ -7,20 +7,25 @@
       </div>
       <form @submit.prevent="handleSubmit">
         <div>
-          <input v-model="email" type="email" id="email" placeholder="Email" required />
+          <input v-model="usuario" type="text" id="usuario" placeholder="Nick" @click="alertOff" required/>
         </div>
         <div>
-          <input v-model="password" type="password" id="password" placeholder="Password"required />
+          <input v-model="password" type="password" id="password" placeholder="Password" required/>
         </div>
         <button type="submit" class="button-solid">Login</button>
         <button type="button" class="button-outlined"><a href="#">Registrarse</a></button>
       </form>
+      <div v-if="showAlert" class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
       </div>
     </div>
     
   </template>
   
   <script>
+
+  import { login } from '@/services/authService'
 
   export default {
     name: 'LoginView',
@@ -32,16 +37,40 @@
   },
   data() {
     return {
-      email: '',
-      password: ''
+      usuario: '',
+      password: '',
+      message: '',
+      showAlert: false
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       // Valido email y pass
-      if (this.email != '' && this.password != '') {
-        this.$router.push({name: 'home'});
+      if (this.usuario != '' && this.password != '') {
+        try {
+          const respLog = await login(this.usuario, this.password)
+          console.log(this.usuario + ',' + this.password)
+          if (respLog.success === true) {
+            this.$router.push({name: 'home'});
+          } else {
+            this.message = respLog.error;
+            this.showAlert=true;
+          }
+          
+        } catch (error) {
+          console.error('Error en el inicio de sesión:', error);
+          throw error;
+          
+        }
+        
+        
+      } else {
+        this.showAlert = true;
+        this.message = 'Por favor complete todos los campos.'
       }
+    },
+    alertOff() {
+      this.showAlert = false;
     }
   }
   }
