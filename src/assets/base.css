@@ -41,7 +41,7 @@
   --section-gap: 160px;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -112,3 +112,14 @@ body.login-background {
     height: 100vh;
   }
 }
+
+.btn-primary {
+  background-color: var(--vt-c-primaryColor);
+  border-color: var(--vt-c-primaryColor);
+
+  &:hover {
+    background-color: var(--vt-c-primaryColorDarker);
+  }
+}
+
+
