@@ -36,7 +36,7 @@
         <label for="actividad">Actividad:</label>
         <select id="actividad" class="swal2-input" v-model="activSelected">
           <option value="" disabled selected>Seleccione una opción</option>
-          <option v-for="activ in actividades" :value="activ.id1">
+          <option v-for="activ in actividades" :value="activ.nombre">
             {{ activ.nombre }}
           </option>
         </select>
@@ -44,17 +44,17 @@
         <label for="tipo">Tipo:</label>
         <select id="tipo" class="swal2-input" v-model="tipoSelected" @change="getInsumos">
           <option value="" disabled selected>Seleccione una opción</option>
-            <option value="agroquimicos">Agroquimicos</option>
-            <option value="fertilizantes">Fertilizantes</option>
-            <option value="labor">Labor</option>
-            <option value="semilla">Semillas</option>
-            <option value="varios">Varios</option>
+            <option value="Agroquimicos">Agroquimicos</option>
+            <option value="Fertilizantes">Fertilizantes</option>
+            <option value="Labor">Labor</option>
+            <option value="Semilla">Semillas</option>
+            <option value="Varios">Varios</option>
         </select>
 
         <label for="insumo">Insumo/Labor:</label>
         <select id="insumo" class="swal2-input" v-model="insumoSelected" :disabled="!insumos.length">
           <option value="" disabled selected>Seleccione una opción</option>
-          <option v-for="insumo in insumos" :value="insumo.id1">
+          <option v-for="insumo in insumos" :value="insumo.nombre">
             {{ insumo.nombre }}
           </option>
         </select>
@@ -79,6 +79,7 @@
   
   <script>
   import { obtenerCampos, obtenerActividades, obtenerLotes, obtenerInsumos } from '@/services/requestsPopUp';
+  import { useStore } from 'vuex';
 
   export default {
     name: 'modalDatos',
@@ -129,6 +130,8 @@
     },
 
     agregarRegistros() {
+      const store = useStore();
+      
       if (!this.campoSelected || !this.loteSelected || !this.activSelected || !this.tipoSelected || !this.insumoSelected || !this.cantSelected) {
         this.showAlert = true;
       } else {
@@ -139,15 +142,19 @@
           'up': this.campoSelected,
           'lote': this.loteSelected,
           'actividad': this.activSelected,
-          'codigo': this.tipoSelected,
-          'detalle': this.insumoSelected,
-          'cantidad': this.cantSelected,
+          'tipo': this.tipoSelected,
+          'insumo': this.insumoSelected,
+          'cant': this.cantSelected,
         }
 
-        this.registros.push(items)
+        this.registros.push(items);
+        this.$emit('registrosLista', this.registros);
         console.log('los registros cargados fueron: ', items);
+
+        this.cantSelected = '';
       }
     },
+
     mostrarRegistros() {
       console.log(this.registros);
     }

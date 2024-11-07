@@ -11,20 +11,20 @@
 .button-solid {
   background-color: var(--vt-c-primaryColor);
   color: var(--vt-c-white-soft);
-  padding: 15px;
+  padding: 8px;
   border: none;
   border-radius: 6px;
-  font-size: 18px;
+  /*font-size: 18px;*/
   transition: 0.2s ease-out;
 }
 
 .button-outlined {
   background-color: var(--vt-c-white-soft);
   color: var(--vt-c-primaryColor);
-  padding: 15px;
+  padding: 8px;
   border: solid 3px var(--vt-c-primaryColor);
   border-radius: 6px;
-  font-size: 18px;
+  /*font-size: 18px;*/
   transition: 0.2s ease-out;
 
 

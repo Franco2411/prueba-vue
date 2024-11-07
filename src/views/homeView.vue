@@ -5,8 +5,12 @@
     
 
         </div>
-        <div class="contenedor-registros" v-if="registros.length > 0">
-            <registersCard v-for="(registro) in registros" :registro="registro" />
+        <div class="contenedor-registros" v-if="registros.length > 0">  
+          <visorRegistro v-for="(registro) in registros" :registro="registro" />
+          <form @submit.prevent="enviarRegistros">
+            <button type="submit" class="button-solid">Enviar datos</button>
+            <button type="button" class="button-outlined" @click="limpiarLista">Borrar</button>
+          </form>
         </div>
         <div class="img-nodata" v-else>
           <img src="../assets/images/no_data.png" alt="No hay datos">
@@ -15,7 +19,7 @@
           </div>
         </div>
         <div class="btn-flotante">
-          <modalDatos></modalDatos>          
+          <modalDatos @registrosLista="actualizarRegistros"></modalDatos>          
         </div>
     </div>
 
@@ -24,29 +28,94 @@
 <script>
 import apiClient from '../services/api';
 import registersCard from '@/components/icons/registersCard.vue';
+import visorRegistro from '@/components/icons/visorRegistro.vue';
 import axios from 'axios';
 import { obtenerCampos, obtenerActividades, obtenerLotes, obtenerInsumos } from '@/services/requestsPopUp';
 import modalDatos from '@/components/icons/modalDatos.vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import Swal from 'sweetalert2';
+import { insertarRegistros } from '@/services/registrosGetPush';
 
 
 export default {
   name: 'homeView',
   components: {
     registersCard,
-    modalDatos
+    modalDatos,
+    visorRegistro
   },
   methods: {
-    
+    actualizarRegistros(nuevosRegistros) {
+      this.registros = nuevosRegistros;
+      console.log('Los registros en el home son: ' + this.registros)
+    },
+
+    limpiarLista() {
+      Swal.fire({
+        title: "¿Está seguro?",
+        text: "No será posible revertir ésta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#20512d",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.registros = [];
+          
+          Swal.fire({
+            title: "Datos eliminados",
+            text: "Los datos fueron eliminados exitosamente.",
+            icon: "success",
+            confirmButtonColor: "#20512d"
+          });
+        }
+      });
+      
+    },
+
+    async enviarRegistros() {
+      if (this.registros.length >= 0) {
+        const response = await insertarRegistros(this.registros);
+
+        if (response.success) {
+          Swal.fire({
+                title: "Datos enviados correctamente!",
+                text: "Los datos fueron enviados satisfactoriamente.",
+                icon: "success",
+                confirmButtonColor: "#20512d"
+            });
+          
+            this.registros = [];
+        } else {
+            Swal.fire({
+                  title: "Error!",
+                  text: "Hubo un error al enviar los datos, por favor intente nuevamente.",
+                  icon: "error",
+                  confirmButtonColor: "#20512d"
+              });
+        }
+      } else {
+        Swal.fire({
+                title: "Advertencia!",
+                text: "Debe de tener registros cargados para poder enviarlos.",
+                icon: "warning",
+                confirmButtonColor: "#20512d"
+            });
+      }
+    }
   },
   data() {
     return {
         campos: [],
         actividades: [],
-        registros: [],
         lotes: [],
-        usuario: localStorage.getItem('usuario')
+        usuario: localStorage.getItem('usuario'),
+        registros: []
     }
   }
+    
 }
 </script>
 
@@ -121,17 +190,11 @@ export default {
     }
   }
 
-.pop {
-  display: flex;
-  flex-direction: column;
-}
+  button {
+    margin-right: 8px;
+  }
 
-.pop-cont {
-  display: flex;
-  flex-direction: column;
-}
-
-.pop-container {
+.contenedor-registros {
   display: flex;
   flex-direction: column;
 }
@@ -145,7 +208,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 100%;
+    max-width: 100vw;
 
   }
 
@@ -170,12 +233,18 @@ export default {
 
   .contenedor-registros {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    flex: 1 1 auto;
-    width: 100%;
+    flex-wrap: wrap;
+    max-width: auto;
+    margin-right: 8px;
     overflow-y: auto;
-    padding: 0px 8px;
+    box-sizing: border-box;
+  }
+
+  .contenedor-registros ul {
+    padding: 0px;
+    max-width: 100%;
   }
 
   .btn-flotante {
