@@ -44,11 +44,11 @@
         <label for="tipo">Tipo:</label>
         <select id="tipo" class="swal2-input" v-model="tipoSelected" @change="getInsumos">
           <option value="" disabled selected>Seleccione una opción</option>
-            <option value="Agroquimicos">Agroquimicos</option>
-            <option value="Fertilizantes">Fertilizantes</option>
-            <option value="Labor">Labor</option>
-            <option value="Semilla">Semillas</option>
-            <option value="Varios">Varios</option>
+            <option value="agroquimicos">Agroquimicos</option>
+            <option value="fertilizantes">Fertilizantes</option>
+            <option value="labor">Labor</option>
+            <option value="semilla">Semillas</option>
+            <option value="varios">Varios</option>
         </select>
 
         <label for="insumo">Insumo/Labor:</label>
